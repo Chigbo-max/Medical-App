@@ -1,4 +1,3 @@
-import os
 import re
 
 
@@ -17,13 +16,25 @@ class Main:
         self.input_menu()
 
     def input_menu(self):
-        choice = input("Select a number if you would like to register or login to logout?")
-        match(choice[0]):
-            case '1': self.register()
-            case '2': self.login()
-            case '3': self.log_out()
-            case _: print("Invalid input try again")
-        self.go_to_menu()
+        try:
+
+            choice = input("Select a number if you would like to register or login to logout?")
+            match(choice[0]):
+                case '1':
+                    self.register()
+                case '2':
+                    self.login()
+                case '3':
+                    self.log_out()
+                case _:
+                    print("Invalid input try again")
+                    self.go_to_menu()
+        except ValueError:
+            print("Invalid input try again")
+        finally:
+            self.go_to_menu()
+
+
 
     def register(self):
         pass
@@ -33,7 +44,7 @@ class Main:
         last_name = input("Enter your last name: ")
         patient_id = input("Enter your ID: ")
         name = first_name + " " + last_name
-        if self.validate_name(name) and self.validate_id:
+        if self.validate_name(name) and self.validate_id(patient_id):
             self.access_dashboard()
         else:
             print("Invalid login details entered")
@@ -49,12 +60,46 @@ class Main:
         quit()
 
     def access_dashboard(self):
-        login = '''
+        dashboard = '''
         WELCOME TO ONWARD HOSPITAL
-        1. Book a specialist
-        2. View appointment schedules
-        3. Get your ID
-        4. Logout
+        1 -> Book a specialist
+        2 -> View appointment schedules
+        3 -> Get your ID
+        4 -> Logout
         '''
+        print(dashboard)
+        self.input_dashboard()
+
+    def input_dashboard(self):
+        try:
+            choice = input("Enter your choice: ")
+            match(choice[0]):
+                case '1':
+                    self.book_a_specialist()
+                case '2':
+                    self.view_appointment()
+                case '3':
+                    self.get_your_id()
+                case _:
+                    print("Invalid input try again")
+                    self.go_to_menu()
+        except ValueError:
+            print("Invalid input try again")
+        finally:
+            self.access_dashboard()
+
+    def book_a_specialist(self):
+        pass
+
+    def view_appointment(self):
+        pass
+
+    def get_your_id(self):
+        pass
+
+    def logout(self):
+        quit()
+
+
 
 
