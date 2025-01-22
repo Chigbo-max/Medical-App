@@ -1,4 +1,3 @@
-import re
 
 
 class Main:
@@ -17,7 +16,6 @@ class Main:
 
     def input_menu(self):
         try:
-
             choice = input("Select a number if you would like to register or login to logout?")
             match(choice[0]):
                 case '1':
@@ -31,8 +29,7 @@ class Main:
                     self.go_to_menu()
         except ValueError:
             print("Invalid input try again")
-        finally:
-            self.go_to_menu()
+       
 
 
 
@@ -57,7 +54,8 @@ class Main:
         pass
 
     def log_out(self):
-        quit()
+        print("Thanks for using our App")
+
 
     def access_dashboard(self):
         dashboard = '''
@@ -97,8 +95,10 @@ class Main:
     def get_your_id(self):
         pass
 
-    def logout(self):
-        quit()
+
+Main().display_main_menu()
+
+
 
 
 
